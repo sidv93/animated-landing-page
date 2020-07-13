@@ -1,8 +1,52 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import ArrowRight from '../assets/right-arrow.svg';
+import { motion } from 'framer-motion';
 
-const Container = styled.section`
+const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+
+const firstName = {
+    animate: {
+        transition: {
+            delayChildren: 0.6,
+            staggerChildren: 0.4,
+            staggerDirection: 1,
+        },
+    },
+};
+const letter = {
+    initial: {
+        y: 30,
+        opacity: 0,
+        skewY: '2deg'
+    },
+    animate: {
+        y: 0,
+        opacity: 1,
+        skewY: 0,
+        transition: { ...transition },
+    },
+};
+const overlayContainer = {
+    animate: {
+        transition: {
+            delayChildren: 0.6,
+            staggerChildren: 0.4,
+            staggerDirection: 1,
+        },
+    }
+};
+const overlayElement = {
+    intial: {
+        height: '100%'
+    },
+    animate: {
+        height: 0,
+        transition: { ...transition }
+    }
+}
+
+const Container = styled(motion.section)`
     background-color: #FFF;
     height: 50vh;
     width: 100%;
@@ -10,6 +54,7 @@ const Container = styled.section`
     flex-direction: column;
     justify-content: space-between;
     padding: 50px 8%;
+    position: relative;
 `;
 const HeadingContainer = styled.div`
     display: flex;
@@ -52,10 +97,10 @@ const Hamburger = styled.div`
         z-index: 1;
     }
 `;
-const Tagline = styled.h1`
+const Tagline = styled(motion.h1)`
     width: 53%;
     font-size: 2.8rem;
-    line-height: 70px;
+    line-height: 30px;
 `;
 const MoreAboutContainer = styled.div`
     display: flex;
@@ -73,11 +118,29 @@ const RightArrow = styled.img`
     height: 50px;
     width: 50px;
     padding: 10px;
+    cursor: pointer;
+`;
+
+const OverlayContainer = styled(motion.div)`
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+`;
+const OverlayComponent = styled(motion.div)`
+    background-color: black;
 `;
 
 const Header = () => {
+    const overlayRef = useRef();
+    function hideOverlay() {
+        overlayRef.current.style.display = 'none';
+    }
     return (
-        <Container>
+        <Container initial="initial" animate="animate" exit="exit" onAnimationComplete={hideOverlay}>
             <HeadingContainer>
                 <Heading>
                     Agency
@@ -86,15 +149,25 @@ const Header = () => {
 
                 </Hamburger>
             </HeadingContainer>
-            <Tagline>
-                Creating unique brands is what we do.
-            </Tagline>
+            <motion.span variants={firstName}>
+                <Tagline variants={letter}>
+                    Creating unique brands is
+                </Tagline>
+                <Tagline variants={letter}>
+                    what we do.
+                </Tagline>
+            </motion.span>
             <MoreAboutContainer>
                 <MoreAbout>
                     More  about us.
                 </MoreAbout>
                 <RightArrow src={ArrowRight} alt="right arrow" />
             </MoreAboutContainer>
+            <OverlayContainer ref={overlayRef} variants={overlayContainer}>
+                <OverlayComponent variants={overlayElement} />
+                <OverlayComponent variants={overlayElement} />
+                <OverlayComponent variants={overlayElement} />
+            </OverlayContainer>
         </Container>
     );
 };
