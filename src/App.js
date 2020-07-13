@@ -14,7 +14,7 @@ function App() {
   return (
     <Container>
       <Header />
-      <Showcase />
+      {/* <Showcase /> */}
     </Container>
   );
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ArrowRight from '../assets/right-arrow.svg';
 import { motion } from 'framer-motion';
 
-const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+const transition = { delay: 2, duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
 const firstName = {
     animate: {
@@ -101,6 +101,8 @@ const Tagline = styled(motion.h1)`
     width: 53%;
     font-size: 2.8rem;
     line-height: 30px;
+    color: #fff;
+    mix-blend-mode: difference;
 `;
 const MoreAboutContainer = styled.div`
     display: flex;
@@ -145,9 +147,7 @@ const Header = () => {
                 <Heading>
                     Agency
                 </Heading>
-                <Hamburger>
-
-                </Hamburger>
+                <Hamburger />
             </HeadingContainer>
             <motion.span variants={firstName}>
                 <Tagline variants={letter}>
