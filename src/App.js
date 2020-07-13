@@ -7,14 +7,14 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background-color: #000;
+  background-color: #fff;
 `;
 
 function App() {
   return (
     <Container>
       <Header />
-      {/* <Showcase /> */}
+      <Showcase />
     </Container>
   );
 }

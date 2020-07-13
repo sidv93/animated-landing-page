@@ -6,12 +6,12 @@ import Yourspace from '../assets/yourspace-min.png';
 import Card from './Card';
 import { motion } from 'framer-motion';
 
-const transition = { delay: 3, duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
 const showcaseContainer = {
     animate: {
         transition: {
-            delayChildren: 0.6,
+            delayChildren: 4,
             staggerChildren: 0.4,
             staggerDirection: 1,
         },

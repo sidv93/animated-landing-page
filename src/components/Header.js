@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import ArrowRight from '../assets/right-arrow.svg';
 import { motion } from 'framer-motion';
 
-const transition = { delay: 2, duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
 const firstName = {
     animate: {
         transition: {
-            delayChildren: 0.6,
+            delayChildren: 1,
             staggerChildren: 0.4,
             staggerDirection: 1,
         },
@@ -16,7 +16,7 @@ const firstName = {
 };
 const letter = {
     initial: {
-        y: 30,
+        y: 50,
         opacity: 0,
         skewY: '2deg'
     },
@@ -24,13 +24,13 @@ const letter = {
         y: 0,
         opacity: 1,
         skewY: 0,
-        transition: { ...transition },
+        transition: { delay: 0.7, duration: 3, ease: transition.ease },
     },
 };
 const overlayContainer = {
     animate: {
         transition: {
-            delayChildren: 0.6,
+            delayChildren: 2.6,
             staggerChildren: 0.4,
             staggerDirection: 1,
         },
@@ -47,7 +47,7 @@ const overlayElement = {
 }
 
 const Container = styled(motion.section)`
-    background-color: #FFF;
+    background-color: #fff;
     height: 50vh;
     width: 100%;
     display: flex;
@@ -97,12 +97,16 @@ const Hamburger = styled.div`
         z-index: 1;
     }
 `;
+const TaglineContainer = styled.div`
+    z-index: 1;
+    mix-blend-mode: difference;
+`;
 const Tagline = styled(motion.h1)`
     width: 53%;
     font-size: 2.8rem;
     line-height: 30px;
-    color: #fff;
     mix-blend-mode: difference;
+    color: #fff;
 `;
 const MoreAboutContainer = styled.div`
     display: flex;
@@ -133,7 +137,7 @@ const OverlayContainer = styled(motion.div)`
     height: 100%;
 `;
 const OverlayComponent = styled(motion.div)`
-    background-color: black;
+    background-color: #000;
 `;
 
 const Header = () => {
@@ -149,14 +153,14 @@ const Header = () => {
                 </Heading>
                 <Hamburger />
             </HeadingContainer>
-            <motion.span variants={firstName}>
+            <TaglineContainer variants={firstName}>
                 <Tagline variants={letter}>
                     Creating unique brands is
                 </Tagline>
                 <Tagline variants={letter}>
                     what we do.
                 </Tagline>
-            </motion.span>
+            </TaglineContainer>
             <MoreAboutContainer>
                 <MoreAbout>
                     More  about us.
