@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const transition = { delay: 1, duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+const transition = { delay: 4.5, duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
 const Container = styled(motion.div)`
     cursor: pointer;
